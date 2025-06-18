@@ -1,2 +1,0 @@
-# Oniline-internship
-Problem Solving

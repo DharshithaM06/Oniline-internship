@@ -1,0 +1,75 @@
+1) Reversing the sub array
+
+# Reversing an array in chunks of specific size
+def reverse_array_in_chunks(arr,chunk_size):
+# Initialize an empty list to store reversed chunks
+   reversed_arr=[]
+   # Iterate the array in chunks of specified size
+   for i in range(0,len(arr),chunk_size):
+       # Extract current chunk
+       chunk=arr[i:i+chunk_size]
+       # Reverse the chunk, add it to result list
+       reversed_arr.extend(reversed(chunk))
+   return reversed_arr
+arr=[1,2,3,4,5,6,7,8,9]
+chunk_size=3
+print(reverse_array_in_chunks(arr,chunk_size))
+
+Output
+[3, 2, 1, 6, 5, 4, 9, 8, 7]
+
+2) Find maximum profit
+
+# Function to find maximum profit
+
+def max_profit(prices):
+    # Check if prices array is empty
+    if not prices:
+        # If empty, return 0
+        return 0
+    # Initialize min_price to first price
+    min_price=prices[0]
+    # Initialize max_profit to 0
+    max_profit=0
+    # Iterate the prices array
+    for price in prices:
+        # Check if current price is less than min_price
+        if price < min_price:
+            # Update min_price to current price
+            min_price=price
+        else:
+            # Calculate profit by subtracting min_price from current_price
+            max_profit=max(max_profit,price - min_price)
+    return max_profit
+prices=[100,180,260,310,40,535,695]
+print(max_profit(prices))
+
+Output
+655
+
+3) Find maximum profit for any number of days
+
+def max_profit(prices):
+    # Check if prices array is empty
+    if not prices:
+        # If empty, return 0
+        return 0
+    # Initialize min_price to first price
+    min_price=prices[0]
+    # Initialize max_profit to 0
+    max_profit=0
+    # Iterate the prices array
+    for price in prices:
+        # Check if current price is less than min_price
+        if price < min_price:
+            # Update min_price to current price
+            min_price=price
+        else:
+            # Calculate profit by subtracting min_price from current_price
+            max_profit=max(max_profit,price - min_price)
+    return max_profit
+prices=[7,1,5,3,6,4]
+print(max_profit(prices))
+
+Output
+5
