@@ -1,0 +1,77 @@
+1) Sum subset 
+
+# Function to find sum
+def two_sum(nums,target):
+     # Create an empty dictionary to store numbers
+    num_dict={}
+    # Iterate the list of numbers
+    for i,num in enumerate(nums):
+        # Calculate the complement of the current number
+        complement=target-num
+        # Check if complement is in dictionary
+        if complement in num_dict:
+            # If it is, return the indices of two numbers
+            return [num_dict[complement],i]
+        # If not, add current number to dictionary
+        num_dict[num]=i
+    # If no solution is found,return None
+    return None
+# Test the function
+nums=[2,7,11,15]
+target=9
+result=two_sum(nums,target)
+if result:
+    print("Indices of two numbers:",result)
+else:
+    print("No solution found")
+
+Output
+Indices of two numbers: [0, 1]
+
+2) Find time slot
+
+# Function to find time slot
+def minAvailableDuration(slt1,slt2,d):
+    # Sort time slots by start time
+    slt1.sort(key=lambda x:x[0])
+    slt2.sort(key=lambda x:x[0])
+    # Initialize pointers for both lists
+    i,j=0,0
+    # Iterate both lists
+    while i<len(slt1) and j<len(slt2):
+        # Find overlap between current time slots
+        start=max(slt1[i][0],slt2[j][0])
+        end=min(slt1[i][1],slt2[j][1])
+        # Check if overlap is at least d
+        if end-start>=d:
+            # Return the earliest common time slot
+            return[start,start+d]
+        # Move the pointer of time slot ends earlier
+        if slt1[i][1]<slt2[j][1]:
+            i+=1
+        else:
+            j+=1
+     # If no common time slot, return empty array
+    return []
+# Test the function
+slt1=[[10,50],[60,120],[140,210]]
+slt2=[[0,15],[60,70]]
+d=8
+print(minAvailableDuration(slt1,slt2,d))
+
+Output
+[60, 68]
+
+3) Find common elements from two arrays
+
+# Function to find common elements from two arrays
+def common_elements(arr1,arr2):
+    # Convert both arrays to sets, use . operator to find intersection
+    # Find common elements using set intersection
+    return list(set(arr1).intersection(arr2))
+arr1=[1,2,3,4,5]
+arr2=[4,5,6,7,8]
+print(common_elements(arr1,arr2))
+
+Output
+[4, 5]
