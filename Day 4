@@ -1,0 +1,76 @@
+# 1) Matrix Rotation
+
+# Function to print matrix
+def print_matrix(matrix):
+    for row in matrix:
+        print(row)
+# Get the number of rows from user
+n=int(input("Enter the size of matrix(nxn):"))
+# Get the elements from user
+matrix=[]
+for i in range(n):
+    row=[]
+    for j in range(n):
+        element=int(input(f"Enter element[{i+1}][{j+1}]:"))
+        row.append(element)
+    matrix.append(row)
+# Print original matrix
+print("\nOriginal Matrix:")
+print_matrix(matrix)
+# Transpose the matrix
+transposed_matrix=[[matrix[j][i] for j in range(n)] for i in range(n)]
+# Reverse each row in transposed matrix
+rotated_matrix=[row[::-1] for row in transposed_matrix]
+print("\nRotated Matrix:")
+print_matrix(rotated_matrix)
+
+# 2) Different time zones
+
+from datetime import datetime
+import pytz
+# Define different time zones
+utc=pytz.UTC
+nyc=pytz.timezone('America/New_York')
+london=pytz.timezone('Europe/London')
+india=pytz.timezone('Asia/Kolkata')
+# Get hour from user
+hour=int(input("Enter the hour (0-23):"))
+# Valid the input
+if hour < 0 or hour > 23:
+    print("Invalid. Enter hour (0-23):)")
+else :
+    # Create object for hour in UTC
+    utc_time=datetime.now(utc).replace(hour=hour,minute=0,second=0,microsecond=0)
+    # Convert UTC time to different time zones
+    nyc_time=utc_time.astimezone(nyc)
+    london_time=utc_time.astimezone(london)
+    india_time=utc_time.astimezone(india)
+    # Print time in different time zones
+    print(f"Time in UTC: {utc_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Time in New York: {nyc_time.strftime('%Y-%m-%d %H:%M:%S')}")       
+    print(f"Time in London: {london_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Time in India: {india_time.strftime('%Y-%m-%d %H:%M:%S')}")
+
+# 3) Time slots
+
+# Import datetime
+from datetime import datetime
+# Function to calculate time difference
+def calculate_time_difference(start_time, end_time):
+    time_format = "%H:%M"
+    start_time = datetime.strptime(start_time, time_format)
+    end_time = datetime.strptime(end_time, time_format)
+    time_difference = end_time - start_time
+    hours = time_difference.seconds // 3600
+    minutes = (time_difference.seconds // 60) % 60
+    return hours, minutes
+# Get start and end time from user
+start_time = input("Enter the start time (HH:MM): ")
+end_time = input("Enter the end time (HH:MM): ")
+# Valid the input
+try:
+    hours, minutes = calculate_time_difference(start_time, end_time)
+    print(f"Time slot: {start_time} - {end_time}")
+    print(f"Duration: {hours} hours {minutes} minutes")
+except ValueError:
+    print("Invalid time format. Please use HH:MM.")
