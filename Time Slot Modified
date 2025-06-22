@@ -1,0 +1,65 @@
+# Define a structure for time slot
+class TimeSlot:
+    def _init_(self, start_time, end_time):
+        self.start_time = start_time
+        self.end_time = end_time
+# Function to get time 
+def get_time(prompt):
+    while True:
+        try:
+            time = input(prompt)
+            hours, minutes = map(int, time.split(':'))
+            if 0 <= hours < 24 and 0 <= minutes < 60:
+                return hours * 60 + minutes
+            else:
+                print("Invalid time. Please enter time in HH:MM format")
+        except ValueError:
+            print("Invalid time format. Please enter time in HH:MM format")
+# Function to find common time slots
+def find_common_time_slots(person1_time_slots, person2_time_slots):
+    common_time_slots = []
+    i = j = 0
+    while i < len(person1_time_slots) and j < len(person2_time_slots):
+        start_time = max(person2_time_slots[i].start_time, person2_time_slots[j].start_time)
+        end_time = min(person1_time_slots[i].end_time, person2_time_slots[j].end_time)
+        if start_time < end_time:
+            common_time_slots.append(TimeSlot(start_time, end_time))
+        if person1_time_slots[i].end_time < person2_time_slots[j].end_time:
+            i += 1
+        else:
+            j += 1
+    return common_time_slots
+# Get time slots
+n1 = int(input("Enter the number of time slots for person 1: "))
+person1_time_slots = []
+for i in range(n1):
+    print(f"Enter time slot {i+1} for person 1:")
+    start_time = get_time("Enter start time (HH:MM): ")
+    end_time = get_time("Enter end time (HH:MM): ")
+    if end_time > start_time:
+        person1_time_slots.append(TimeSlot(start_time, end_time))
+    else:
+        print("Invalid time slot. End time should be greater than start time.")
+n2 = int(input("Enter the number of time slots for person 2: "))
+person2_time_slots = []
+for i in range(n2):
+    print(f"Enter time slot {i+1} for person 2:")
+    start_time = get_time("Enter start time (HH:MM): ")
+    end_time = get_time("Enter end time (HH:MM): ")
+    if end_time > start_time:
+        person2_time_slots.append(TimeSlot(start_time, end_time))
+    else:
+        print("Invalid time slot. End time should be greater than start time.")
+# Find common time slots
+common_time_slots = find_common_time_slots(person1_time_slots, person2_time_slots)
+# Print common time slots
+if common_time_slots:
+    print("Common time slots:")
+    for i, time_slot in enumerate(common_time_slots):
+        start_hours = time_slot.start_time // 60
+        start_minutes = time_slot.start_time % 60
+        end_hours = time_slot.end_time // 60
+        end_minutes = time_slot.end_time % 60
+        print(f"Time slot {i+1}: {start_hours:02d}:{start_minutes:02d} - {end_hours:02d}:{end_minutes:02d}")
+else:
+    print("No common time slots found.")-
