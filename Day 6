@@ -1,0 +1,127 @@
+# 1) Middle element of a linked list
+
+# Create a node
+class Node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+# Create a linked list
+head=None
+# Get number of nodes
+n=int(input("Enter number of nodes:"))
+# Add nodes
+for start in range(n):
+    data=int(input(f" Enter node {start+1} value:"))
+    new_node=Node(data)
+    if head is None:
+        head=new_node
+    else:
+        current=head
+        while current.next:
+            current=current.next
+        current.next=new_node
+# Find middle node
+start_counter=head
+end_counter=head
+while end_counter and end_counter.next:
+    start_counter=start_counter.next
+    end_counter=end_counter.next.next
+# Print middle node
+print("Middle element:",start_counter.data)
+
+
+# 2) Reverse linked list by changing links between nodes
+
+# Create node
+class Node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+# Create a linked list
+head=None
+# Get number of nodes
+n=int(input("Enter number of nodes:"))
+# Add nodes
+for start in range(n):
+    data=int(input(f" Enter node {start+1} value:"))
+    new_node=Node(data)
+    if head is None:
+        head=new_node
+    else:
+        current=head
+        while current.next:
+            current=current.next
+        current.next=new_node
+# Print original linked list
+print("Original linked list:")
+current=head
+while current.next:
+    current=current.next
+    current.next=new_node
+print()
+# Reverse linked list
+prev=None
+current=head
+while current.next:
+    current=current.next
+    current.next=new_node
+    # Store next node
+    next_node=current.next
+    # Reverse the link
+    current.next=prev
+    # Move to next node
+    prev=current
+    current=next_node
+# Update head to first node
+head=prev
+# Print reverse linked list
+print("Reverse linked list:")
+current=head
+while current.next:
+    print(current.data,end=" ")
+    current=current.next
+print()
+
+
+# 3) Find Nth node from end of linked list
+
+class Node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+# Create a linked list
+head=None
+# Get number of nodes
+n=int(input("Enter number of nodes:"))
+# Add nodes
+for start in range(n):
+    data=int(input(f" Enter node {start+1} value:"))
+    new_node=Node(data)
+    if head is None:
+        head=new_node
+    else:
+        current=head
+        while current.next:
+            current=current.next
+        current.next=new_node
+# Get value of N
+n=int(input("Enter value of N:"))
+# Calculate length of linked list
+length=0
+current=head
+while current:
+    length+=1
+    current=current.next
+# Check if Nth node from end exists
+if n>length:
+    print(-1)
+else:
+    # Calculate position of Nth node
+    pos=length-1
+    current=head
+    # Traverse to Nth node
+    while pos:
+        current=current.next
+        pos=-1
+# Print
+print(current.data)
