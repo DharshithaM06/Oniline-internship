@@ -4,22 +4,22 @@
 n1=int(input("Enter the size of first array:"))
 # Get elements of array
 arr1=[]
-for i in range(n1):
-    element=int(input(f"Enter element {i+1} of array:"))
+for start in range(n1):
+    element=int(input(f"Enter element {start+1} of array:"))
     arr1.append(element)
 # Get the size of second array
 n2=int(input("Enter the size of second array:"))
 # Get elements of array
 arr2=[]
-for i in range(n1):
-    element=int(input(f"Enter element {i+1} of array:"))
+for start in range(n2):
+    element=int(input(f"Enter element {start+1} of array:"))
     arr2.append(element)
 # Sort both arrays in ascending order
 arr1.sort()
 arr2.sort()
 # Initialize two pointers
-i=0
-j=0
+start=0
+end=0
 # Initialize variable to store largest common element
 largest_common=None
 # Traverse both arrays using 2 pointers
@@ -27,14 +27,14 @@ while i<n1 and j<n2:
     # If current elements are equal,update largest element
     if arr1[i]==arr2[j]:
         largest_common=arr1[i]
-        i+=1
-        j+=1
+        start+=1
+        end+=1
     # If current element in first array is smaller move pointer in first array
     elif arr1[i]<arr2[j]:
-        i+=1
+        start+=1
     # If current element in second array is smaller move pointer in second array
     else:
-        j+=1
+        end+=1
 # Print largest common element
 if largest_common is not None:
     print("The Largest common element is:",largest_common)
@@ -48,36 +48,36 @@ else:
 n1=int(input("Enter the size of first array:"))
 # Get elements of array
 arr1=[]
-for i in range(n1):
+for start in range(n1):
     element=int(input(f"Enter element {i+1} of array:"))
     arr1.append(element)
 # Get size of second array
 n2=int(input("Enter the size of second array:"))
 # Get elements of array
 arr2=[]
-for i in range(n2):
+for start in range(n2):
     element=int(input(f"Enter element {i+1} of array:"))
     arr2.append(element)
 # Initialize two pointers
-i=0
-j=0
+start=0
+end=0
 # Initialize an empty list
 merge=[]
 # Merge two arrays using 2 pointers
-while i<n1 and j<n2:
+while start<n1 and end<n2:
     if arr1[i]<arr2[j]:
-        merge.append(arr1[i])
-        i+=1
-        merge.append(arr2[j])
-        j+=1
+        merge.append(arr1[start])
+        start+=1
+        merge.append(arr2[end])
+        end+=1
 # Append any remaining elements from first array
 while i<n1:
     merge.append(arr1[i])
-    i+=1
+    start+=1
 # Append any remaing elements from second array
 while i<n2:
     merge.append(arr2[j])
-    j+=1
+    end+=1
 # Print merge array
 print("Merge array:",merge)
 
@@ -88,19 +88,19 @@ print("Merge array:",merge)
 n=int(input("Enter size of array:"))
 # Get elements in array
 arr=[]
-for i in range(n):
-    element=int(input(f" Enter element {i+1} of array:"))
+for start in range(n):
+    element=int(input(f" Enter element {start+1} of array:"))
     arr.append(element)
 # Initialize two pointers
-i=0
-j=1
+start=0
+end=1
 # Traverse
-while j<n:
-    if arr[i]!=arr[j]:
-        i+=1
-        arr[i]=arr[j]
-    j+=1
+while end<n:
+    if arr[start]!=arr[end]:
+        start+=1
+        arr[start]=arr[end]
+    end+=1
 # length of array without duplicates
-length_without_duplicates=i+1
+length_without_duplicates=start+1
 # print the array
 print("Array without duplicates:",arr[:length_without_duplicates])
