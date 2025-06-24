@@ -55,16 +55,15 @@ for start in range(n):
 # Print original linked list
 print("Original linked list:")
 current=head
-while current.next:
+while current:
+    print(current.data,end=" ")
     current=current.next
-    current.next=new_node
 print()
+
 # Reverse linked list
 prev=None
 current=head
-while current.next:
-    current=current.next
-    current.next=new_node
+while current:
     # Store next node
     next_node=current.next
     # Reverse the link
@@ -77,12 +76,11 @@ head=prev
 # Print reverse linked list
 print("Reverse linked list:")
 current=head
-while current.next:
+while current:
     print(current.data,end=" ")
     current=current.next
 print()
-
-
+    
 # 3) Find Nth node from end of linked list
 
 class Node:
