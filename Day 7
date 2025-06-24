@@ -1,0 +1,42 @@
+# 1) Display Students details with marks
+
+# Create a class
+class StudentDetails:
+    def __init__(self,roll_no,student_name,mark1,mark2,mark3):
+        # Initialize objects
+        self.roll_no=roll_no
+        self.student_name=student_name
+        self.mark1=mark1
+        self.mark2=mark2
+        self.mark3=mark3
+        self.total=mark1+mark2+mark3
+def main():
+    # Get no of students 
+    num_students=int(input("Enter the number of students:"))
+    # Create a list
+    students=[]
+    # Iterate
+    for start in range(num_students):
+        print("\nEnter details of Student {i+1}:")
+        roll_no=int(input("Enter Roll.no:"))
+        student_name=str(input("Enter Name:"))
+        mark1=int(input("Enter Mark 1:"))
+        mark2=int(input("Enter Mark 2:"))
+        mark3=int(input("Enter Mark 3:"))
+        # Create an object and add it to the list
+        student=StudentDetails(roll_no,student_name,mark1,mark2,mark3)
+        students.append(student)
+    # Print student details
+    for start,student in enumerate(students):
+        print(f"\nStudent {start+1} Details:")
+        print(f"Roll No: {student.roll_no}")
+        print(f"Name: {student.student_name}")
+        print(f"Mark 1: {student.mark1}")
+        print(f"Mark 2: {student.mark2}")
+        print(f"Mark 3: {student.mark3}")
+        print(f"Total: {student.total}")
+if __name__=="__main__":
+    main()
+
+  
+    
