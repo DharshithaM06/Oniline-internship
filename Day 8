@@ -1,0 +1,51 @@
+class StudentDetails:
+    def __init__(stud, roll_no=None, name=None, marks=None, total=None):
+        # Initialize the node with roll number, name, marks, and total
+        stud.roll_no = roll_no
+        stud.name = name
+        stud.marks = marks
+        stud.total = total
+        stud.next = None
+
+# Initialize head to None
+head = None
+# Main function to get student details and create a linked list
+def main():
+    global head 
+    # Get no of students from user
+    num_students = int(input("Enter the number of students: "))
+    # Initialize  current node to None
+    current_node = None
+    # Iterate over no of students
+    for start in range(num_students):
+        # Get student details
+        roll_no = int(input(f"Enter Roll No for Student {i+1}: "))
+        name = input(f"Enter Name for Student {i+1}: ")
+        marks = []
+        for end in range(3):
+            mark = int(input(f"Enter Mark {j+1} for Student {i+1}: "))
+            marks.append(mark)
+        # Calculate total marks
+        total = sum(marks)
+        # Create a new node to store the student details
+        student_node = StudentDetails(roll_no, name, marks, total)
+        # If the linked list is empty, assign head node to student node
+        if head is None:
+            head = student_node
+            current_node = head
+        else:
+            # Link current node to student node
+            current_node.next = student_node
+            current_node = current_node.next
+    # Display student details
+    current_node = head
+    while current_node:
+        print(f"\nStudent Details:")
+        print(f"Roll No: {current_node.roll_no}")
+        print(f"Name: {current_node.name}")
+        print(f"Marks: {current_node.marks}")
+        print(f"Total: {current_node.total}")
+        current_node = current_node.next
+if __name__ == "__main__":
+    main()
+ 
