@@ -19,17 +19,17 @@ def main():
     # Iterate over no of students
     for start in range(num_students):
         # Get student details
-        roll_no = int(input(f"Enter Roll No for Student {i+1}: "))
-        name = input(f"Enter Name for Student {i+1}: ")
+        roll_no = int(input(f"Enter Roll No for Student {start+1}: "))
+        name = input(f"Enter Name for Student {start+1}: ")
         marks = []
         for end in range(3):
-            mark = int(input(f"Enter Mark {j+1} for Student {i+1}: "))
+            mark = int(input(f"Enter Mark {end+1} for Student {start+1}: "))
             marks.append(mark)
         # Calculate total marks
         total = sum(marks)
         # Create a new node to store the student details
         student_node = StudentDetails(roll_no, name, marks, total)
-        # If the linked list is empty, assign head node to student node
+        # If linked list is empty assign head to student node
         if head is None:
             head = student_node
             current_node = head
