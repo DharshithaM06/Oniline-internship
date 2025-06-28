@@ -1,0 +1,210 @@
+# 1) Linked list operations
+
+
+class Node:
+    def __init__ (num, data):
+        # Initialize the node
+        num.data = data
+        num.next = None
+class LinkedList:
+    def __init__(num1):
+        # Initialize the head to None
+        num1.head = None
+
+    # Method to insert a node at the beginning of the linked list
+    def insert_at_beginning(num2, data):
+        # Create a new node with the given data
+        new_node = Node(data)
+        # Set the next pointer of the new node to the current head
+        new_node.next = num2.head
+        # Update the head to point to the new node
+        num2.head = new_node
+
+    # Method to insert a node at the end of the linked list
+    def insert_at_end(num3, data):
+        # Create a new node with given value
+        new_node = Node(data)
+        # If the linked list is empty
+        if num3.head is None:
+            num3.head = new_node
+        else:
+            # Traverse the linked list to find the last node
+            current = num3.head
+            while current.next:
+                current = current.next
+            # Append the new node to the last node
+            current.next = new_node
+
+    # Method to delete a node with the given data
+    def delete_node(num4, data):
+        # Check if linked list is empty
+        if num4.head is None:
+            print("List is empty.")
+            return
+        # If the node to be deleted is the head node
+        if num4.head.data == data:
+            num4.head = self.head.next
+            print("Node deleted.")
+            return
+        # Traverse the linked list to find the node to be deleted
+        current = num4.head
+        while current.next:
+            if current.next.data == data:
+                current.next = current.next.next
+                print("Node deleted.")
+                return
+            current = current.next
+        # If the node to be deleted is not found
+        print("Node not found.")
+
+    # Method to reverse the linked list
+    def reverse(num5):
+        # Initialize three pointers: previous, current, and next
+        prev = None
+        current = num5.head
+        while current:
+            # Store the next node
+            next_node = current.next
+            # Reverse the link
+            current.next = prev
+            # Move the pointers one step forward
+            prev = current
+            current = next_node
+        # Update the head to the new first node
+        num5.head = prev
+
+    # Method to display the linked list
+    def display(num6):
+        # Check if the linked list is empty
+        if num6.head is None:
+            print("List is empty.")
+            return
+        # Initialize a pointer to the head of the linked list
+        current = num6.head
+        # Print the linked list
+        print("Linked List: ", end="")
+        while current:
+            print(current.data, end=" ")
+            current = current.next
+        print()
+def main():
+    # Create a linked list object
+    linked_list = LinkedList()
+    # Loop indefinitely until the user chooses to exit
+    while True:
+        # Display the menu options
+        print("\nLinked List Operations:")
+        print("1. Insert element at the beginning")
+        print("2. Insert element at the end")
+        print("3. Delete element")
+        print("4. Reverse linked list")
+        print("5. Display linked list")
+        print("6. Exit")
+        # Get the user's choice
+        choice = input("Enter your choice (1/2/3/4/5/6): ")
+        # Handle the user's choice
+        if choice == "1":
+            # Insert element at the beginning
+            data = int(input("Enter element to insert at the beginning: "))
+            linked_list.insert_at_beginning(data)
+        elif choice == "2":
+            # Insert element at the end
+            data = int(input("Enter element to insert at the end: "))
+            linked_list.insert_at_end(data)
+        elif choice == "3":
+            # Delete element
+            data = int(input("Enter element to delete: "))
+            linked_list.delete_node(data)
+        elif choice == "4":
+            # Reverse linked list
+            linked_list.reverse()
+            print("Linked list reversed.")
+        elif choice == "5":
+            # Display the linked list
+            linked_list.display()
+        elif choice == "6":
+            # Exit the program
+            print("Exiting program.")
+            break
+        else:
+            # Handle invalid choices
+            print("Invalid choice. Please try again.")
+if __name__ =="__main__":
+    main()
+
+
+# 2) Insert value at position
+
+
+class Node:
+    def __init__ (num, data):
+        # Initialize the node with data and a pointer to the next node
+        num.data = data
+        num.next = None
+head = None
+def create_list(number_of_nodes):
+    global head 
+    head = None 
+    # Loop through number of nodes
+    for _ in range(number_of_nodes):
+        value = int(input("Enter the element: "))
+        # Create a new node with given value
+        new_node = Node(value)
+        # If the linked list is empty
+        if head is None:
+            head = new_node
+        else:
+            # Traverse 
+            current = head
+            while current.next:
+                current = current.next
+            current.next = new_node
+def insert_at_position(position, value):
+    global head  # Use the global head variable
+    # Create a new node with the given value
+    new_node = Node(value)
+    # If inserting at the head
+    if position == 0:
+        new_node.next = head
+        head = new_node
+        return
+    # Initialize a pointer to head
+    current = head
+    index = 0
+    # Traverse the linked list to find the node before the insertion position
+    while current and index < position - 1:
+        current = current.next
+        index += 1
+    # If the position is out of range
+    if current is None:
+        print("Position out of range!")
+        return
+    # Insert the new node at the specified position
+    new_node.next = current.next
+    current.next = new_node
+def display():
+    global head  
+    current = head
+    while current:
+        print(current.data, end=" ")
+        current = current.next
+    print()
+def main():
+    # Get elements from user
+    number_of_nodes = int(input("Enter the number of elements: "))
+    # Create linked list
+    print("Enter the elements:")
+    create_list(number_of_nodes)
+    # Get  position and value to insert
+    position = int(input("Enter the position to insert: "))
+    value = int(input("Enter the value to insert: "))
+    # Insert new node 
+    insert_at_position(position, value)
+    # Display
+    print("Linked list: ")
+    display()
+if __name__ == "__main__":
+    main()
+
+   
+
