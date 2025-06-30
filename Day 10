@@ -1,0 +1,134 @@
+# 1) Phone Book using structures
+class PhoneBook:
+    def __init__(mobile):
+        # Initialize empty dictionary to store contacts
+        mobile.contacts = {}
+
+    # Method to add new contact
+    def add_contact(mobile, name, phone_number):
+        # Check if name and phone number are not empty
+        if not name or not phone_number:
+            raise ValueError("Name and phone number cannot be empty")
+        # Add the contact to dictionary
+        mobile.contacts[name] = phone_number
+        print(f"Contact '{name}' added")
+
+    # Method to get phone number by name
+    def get_phone_number(mobile, name):
+        # Return
+        return mobile.contacts.get(name, "Contact not found")
+
+    # Method to delete contact by name
+    def delete_contact(mobile, name):
+        # Check if contact exists
+        if name in mobile.contacts:
+            # Delete contact 
+            del mobile.contacts[name]
+            print(f"Contact '{name}' deleted")
+        else:
+            print("Contact not found")
+
+    # Method to display all contacts
+    def display_contacts(mobile):
+        # Iterate
+        for name, phone_number in mobile.contacts.items():
+            print(f"Name: {name}, Phone Number: {phone_number}")
+def main():
+    # Create a PhoneBook 
+    phone_book = PhoneBook()
+    # Loop 
+    while True:
+        # Display  menu options
+        print("\nPhone Book Menu:")
+        print("1. Add Contact")
+        print("2. Get Phone Number")
+        print("3. Delete Contact")
+        print("4. Display Contacts")
+        print("5. Exit")
+        # Get user's choice
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            # Add new contact
+            name = input("Enter contact name: ")
+            phone_number = input("Enter phone number: ")
+            try:
+                phone_book.add_contact(name, phone_number)
+            except ValueError as e:
+                print(e)
+        elif choice == "2":
+            # Get phone number
+            name = input("Enter contact name: ")
+            print(phone_book.get_phone_number(name))
+        elif choice == "3":
+            # Delete contact
+            name = input("Enter contact name: ")
+            phone_book.delete_contact(name)
+        elif choice == "4":
+            # Display 
+            phone_book.display_contacts()
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice")
+# Run
+if __name__== "__main__":
+    main()
+
+
+
+# 2) Phone Book using structures and linked list
+class Contact:
+    def __init__(mobile, name, phone_number):
+        # Initialize contact's name,phone number
+        mobile.name = name
+        mobile.phone_number = phone_number
+        # Initialize next pointer
+        mobile.next = None
+
+class PhoneBook:
+    def __init__(mobile):
+        # Initialize head to none
+        mobile.head = None
+    # Method to add new contact
+    def add_contact(mobile, name, phone_number):
+        # Create new node
+        new_node = Contact(name, phone_number)
+        # Check
+        if mobile.head is None:
+            mobile.head = new_node
+        else:
+            # Traverse to find last node
+            temp = mobile.head
+            while temp.next:
+                temp = temp.next
+            # Link new node to last node
+            temp.next = new_node
+    # Method to display
+    def display_contacts(mobile):
+        # Check
+        if mobile.head is None:
+            print("No contacts to display.")
+            return
+        # Print
+        print("\nStored Contacts:")
+        # Traverse
+        temp = mobile.head
+        while temp:
+            print(f"Name: {temp.name}, Phone Number: {temp.phone_number}")
+            temp = temp.next
+def main():
+    # Create object
+    phone_book = PhoneBook()
+    # Input from user
+    p = int(input("How many contacts do you want to store? "))
+    # Loop
+    for start in range(p):
+        # Get name and phone number
+        name = input(f"\nEnter name for contact {start + 1}: ")
+        phone_number = int(input(f"Enter phone number for contact {start+ 1}: "))
+        # Add contact to Phone book
+        phone_book.add_contact(name, phone_number)
+    # Display
+    phone_book.display_contacts()
+if __name__ == "__main__":
+    main()
