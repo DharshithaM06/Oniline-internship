@@ -1,0 +1,184 @@
+# 1) Doubly Linked list with operations
+
+
+class Node:
+    def __init__(link, data):
+        # Initialize the node 
+        link.data = data
+        link.next = None
+        link.prev = None
+class DoublyLinkedList:
+    def __init__(link):
+        # Initialize head,tail to None
+        link.head = None
+        link.tail = None
+
+    # Method to create doubly linked list
+    def create_list(link):
+        # Get input from the user
+        m = int(input("Enter the number of nodes: "))
+        # Create nodes and link
+        for start in range(m):
+            data = int(input(f"Enter node {start+1} data: "))
+            link.append(data)
+
+    # Method to append new node to end of list
+    def append(link, data):
+        # Create new node with given data
+        new_node = Node(data)
+        # If the list is empty, set head,tail to new node
+        if link.head is None:
+            link.head = new_node
+            link.tail = new_node
+        else:
+            # Link new node to current tail,update the tail
+            new_node.prev = link.tail
+            link.tail.next = new_node
+            link.tail = new_node
+
+    # Method to prepend new node to beginning of list
+    def prepend(link, data):
+        # Create new node with given data
+        new_node = Node(data)
+        # If the list is empty, set head,tail to new node
+        if link.head is None:
+            link.head = new_node
+            link.tail = new_node
+        else:
+            # Link new node to current head,update head
+            new_node.next = link.head
+            link.head.prev = new_node
+            link.head = new_node
+    # Method to add new node at specific position
+    def add_at_position(link, data, position):
+        # Create new node with given data
+        new_node = Node(data)
+        # If the list is empty, set head,tail to new node
+        if link.head is None:
+            link.head = new_node
+            link.tail = new_node
+        else:
+            # Check if position is valid
+            current = link.head
+            length = 0
+            while current:
+                length += 1
+                current = current.next
+            if position < 0 or position > length:
+                print("Invalid position")
+                return
+            # If position is 0, prepend new node
+            if position == 0:
+                link.prepend(data)
+                return
+            # If position is at end, append new node
+            if position == length:
+                link.append(data)
+                return
+            # Link new node to nodes at specified position
+            current = link.head
+            for _ in range(position - 1):
+                current = current.next
+            new_node.prev = current
+            new_node.next = current.next
+            current.next.prev = new_node
+            current.next = new_node
+
+    # Method to delete node at specific position
+    def delete_at_position(link, position):
+        # If the list is empty, print error
+        if link.head is None:
+            print("List is empty")
+            return
+        # Check if position is valid
+        current = link.head
+        length = 0
+        while current:
+            length += 1
+            current = current.next
+        if position < 0 or position >= length:
+            print("Invalid position")
+            return
+    
+            # If position is 0, delete head node
+            if position == 0:
+                link.head = link.head.next
+                if link.head:
+                    link.head.prev = None
+                else:
+                    link.tail = None
+                return
+            # If position is at end, delete tail node
+            if position == length - 1:
+                link.tail = link.tail.prev
+                link.tail.next = None
+                return
+            # Delete node at specified position
+            current = link.head
+            for _ in range(position):
+                current = current.next
+            current.prev.next = current.next
+            current.next.prev = current.prev
+
+    # Method to print list
+    def print_list(link):
+        # Traverse list from head to tail,print each node's data
+        current = link.head
+        while current:
+            print(current.data, end=" ")
+            current = current.next
+        print()
+
+    # Method to reverse list
+    def reverse_list(link):
+        # Initialize previous and current pointers
+        prev_node = None
+        current = self.head
+        # Traverse list and reverse links
+        while current:
+            next_node = current.next
+            current.next = prev_node
+            current.prev = next_node
+            prev_node = current
+            current = next_node
+        # Update head and tail pointers
+        link.head,link.tail =link.tail,link.head
+
+def main():
+    dll = DoublyLinkedList()
+    while True:
+        print("\nDoubly Linked List Menu:")
+        print("1. Create a doubly linked list")
+        print("2. Add node at the end")
+        print("3. Add node at the beginning")
+        print("4. Add node at a specific position")
+        print("5. Delete node at a specific position")
+        print("6. Print the list")
+        print("7. Reverse the list")
+        print("8. Exit")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            dll.create_list()
+        elif choice == "2":
+            data = int(input("Enter node data: "))
+            dll.append(data)
+        elif choice == "3":
+            data = int(input("Enter node data: "))
+            dll.prepend(data)
+        elif choice == "4":
+            data = int(input("Enter node data: "))
+            position = int(input("Enter position: "))
+            dll.add_at_position(data, position)
+        elif choice == "5":
+            position = int(input("Enter position to delete: "))
+            dll.delete_at_position(position)
+        elif choice == "6":
+            dll.print_list()
+        elif choice == "7":
+            dll.reverse_list()
+        elif choice == "8":
+            break
+        else:
+            print("Invalid choice. Please choose again.")
+if __name__ == "__main__":
+    main()
