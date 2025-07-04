@@ -1,0 +1,54 @@
+# 1) Design Browser History
+
+
+    def forward(link):
+        # If current node has a next node, move to next node
+        if link.current.next:
+            link.current = link.current.next
+            return link.current.url
+        else:
+            return None
+
+    def print_history(link):
+        # Print current history
+        current = link.head
+        while current:
+            if current == link.current:
+                print(f"-> {current.url}")
+            else:
+                print(current.url)
+            current = current.next
+
+def main():
+    browser_history = BrowserHistory()
+    while True:
+        print("\nBrowser History Menu:")
+        print("1. Visit a URL")
+        print("2. Go back")
+        print("3. Go forward")
+        print("4. Print history")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            url = input("Enter the URL to visit: ")
+            browser_history.visit(url)
+        elif choice == "2":
+            url = browser_history.back()
+            if url:
+                print("Current URL:", url)
+            else:
+                print("No more URLs to go back to.")
+        elif choice == "3":
+            url = browser_history.forward()
+            if url:
+                print("Current URL:", url)
+            else:
+                print("No more URLs to go forward to.")
+        elif choice == "4":
+            browser_history.print_history()
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice. Please choose again.")
+if __name__ == "__main__":
+    main()
